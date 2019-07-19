@@ -14,6 +14,7 @@
 Primero que nada es importante tener creada la instancia EC2 (Ubuntu 18.04.1 LTS) y tener accesos a la consola de Amazon Web Services.
 
 **1. Crear instancia EC2**
+
 En el Security Group de la instancia agregar las reglas
 
 ```
@@ -22,6 +23,7 @@ HTTPS		| TCP		| Puerto: 443		| Source: 0.0.0.0/0
 ```
 
 **2. Route53**
+
 En la consola de Amazon Web Services dirigirse al servicio Route53 y crear una nueva `Hosted Zone` como se muestra a continuación
 
 ![Img - Create Hosted Zone](https://raw.githubusercontent.com/antonioxtasis/Domain-Ubuntu-EC2-Route53-SSL/master/imgs/create-hosted-zone.png)
@@ -31,6 +33,7 @@ Una vez creada la Hosted Zone, se te proporcionarán valores como estos
 ![Img - Hosted Zone Values](https://raw.githubusercontent.com/antonioxtasis/Domain-Ubuntu-EC2-Route53-SSL/master/imgs/hosted-zone-values.png)
 
 **3. Panel Admin del dominio**
+
 Dirigirte a panel de administración de tu dominio (ej. Godaddy) y actualiza tu registro del Dominio con los valores que proporciona la configuración  de Route53
 
 Primero actualiza el Domain Nameserver y pon Server type: custom
@@ -46,6 +49,7 @@ Nota: estos cambios pueden tomar hasta 24h para propagarse, pero normalmente tom
 >
 
 **4. Crear los conjuntos de registro DNS en Route53**
+
 Copiar la IP publica de la instancia EC2
 
 ![Img - Public IP](https://raw.githubusercontent.com/antonioxtasis/Domain-Ubuntu-EC2-Route53-SSL/master/imgs/ec2-public-ip.png)
@@ -63,8 +67,11 @@ Dirijirte a la Hosted Zone en Route53
 2. Crear un `record set` alias de _tudominio.com_ a _www.tudominio.com_
 	
 	Dejar el campo “name” en blanco
+	
 	Seleccionar el radiobutton Alias=yes
+	
 	En el campo ”Alias target” poner _www.tudominio.com_
+	
 	Routing policy=simple
 	
 	![Img - Record set alias](https://raw.githubusercontent.com/antonioxtasis/Domain-Ubuntu-EC2-Route53-SSL/master/imgs/record-set-alias.png)
@@ -79,6 +86,7 @@ Dirijirte a la Hosted Zone en Route53
 Instalar un cliente de `Let's Encrypt` en Ubuntu y emitir un certificado SSL para el dominio que se ejecuta en el servidor web NGINX.
 
 **Paso 1 - Requisitos previos**
+
 Antes de comenzar, asumiremos:
 
 * Se tiene la instancia EC2 Ubuntu con privilegios `sudo` de acceso al shell.
@@ -87,6 +95,7 @@ Antes de comenzar, asumiremos:
 
 
 **Paso 2 - Instalar Let´s Encrypt Client**
+
 Descargar el `certbot-auto` (cliente de Let´s Encrypt) y guardarlo en el directorio `/usr/sbin`
 
 ```
@@ -96,6 +105,7 @@ $ sudo chmod a + x / usr / sbin / certbot-auto
 ```
 
 **Paso 3 - Emita SSL para Nginx**
+
 Let´s Encrypt realiza la Validación de Dominio (DV) automáticamente con múltiples desafíos. Una vez que la Autoridad de certificación (CA) verificó la autenticidad de su dominio, se emitirá el certificado SSL.
 
 No es necesario crear VirtualHost para SSL/HTTPS, Let´s Encrypt lo creará. Tú sólo necesitas crear el VirtualHost para el puerto 80.
@@ -128,6 +138,7 @@ IMPORTANT NOTES:
 ```
 
 **Paso 4 - Configurar SSL Auto Renew**
+
 Al final, configure el siguiente JOB en su servidor crontab para renovar automáticamente el certificado SSL si es necesario.
 
 ```
@@ -139,7 +150,6 @@ Al final, configure el siguiente JOB en su servidor crontab para renovar automá
 ### ¡Listo, ya tenemos nuestra instancia asociada a un Dominio Web y SSL funcionando!
 
 😎
-
 
 
 
