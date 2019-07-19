@@ -59,8 +59,8 @@ Dirijirte a la Hosted Zone en Route53
 
 1. Crear un `record set` para asociar el _tudominio.com_ a la IP pública de la instancia EC2
 	
-	Poner www en el campo “name”
-	Poner la dirección IP en el campo “value” del “record set”
+	Escribir www en el campo “name”
+	Escribir la dirección IP en el campo “value” del “record set”
 	
 	![Img - Record set 1](https://raw.githubusercontent.com/antonioxtasis/Domain-Ubuntu-EC2-Route53-SSL/master/imgs/record-set-1.png)
 	
@@ -70,7 +70,7 @@ Dirijirte a la Hosted Zone en Route53
 	
 	Seleccionar el radiobutton Alias=yes
 	
-	En el campo ”Alias target” poner _www.tudominio.com_
+	En el campo ”Alias target” escribir _www.tudominio.com_
 	
 	Routing policy=simple
 	
@@ -144,6 +144,7 @@ Al final, configure el siguiente JOB en su servidor crontab para renovar automá
 ```
 
 **Paso 5 - Bloquear peticiones HTTP a nuestra instancia EC2**
+
 En el Security Group de la instancia EC2 remover la regla HTTP
 
 ```
