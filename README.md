@@ -143,6 +143,12 @@ Al final, configure el siguiente JOB en su servidor crontab para renovar automá
 0 2 * * * sudo /usr/sbin/certbot-auto -q renew
 ```
 
+**Paso 5 - Bloquear peticiones HTTP a nuestra instancia EC2**
+En el Security Group de la instancia EC2 remover la regla HTTP
+
+```
+HTTP 		| TCP 		| Puerto: 80 		| Source: 0.0.0.0/0
+```
 
 
 ### ¡Listo, ya tenemos nuestra instancia asociada a un Dominio Web y SSL funcionando!
