@@ -80,7 +80,7 @@ Dirijirte a la Hosted Zone en Route53
 ¡Listo, probar desde una consola/terminal en tu equipo poniendo el dominio en lugar de la IP pública!
 
 
-## Asegurar Servidor NGINX (Ubuntu 18.04.1 LTS) usando Let’s Encrypt
+## SSL - Asegurar Servidor NGINX (Ubuntu 18.04.1 LTS) usando Let’s Encrypt
 
 
 Instalar un cliente de `Let's Encrypt` en Ubuntu y emitir un certificado SSL para el dominio que se ejecuta en el servidor web NGINX.
@@ -101,7 +101,6 @@ Descargar el `certbot-auto` (cliente de Let´s Encrypt) y guardarlo en el direct
 ```
 $ sudo wget https://dl.eff.org/certbot-auto -O / usr / sbin / certbot-auto
 $ sudo chmod a + x / usr / sbin / certbot-auto
-
 ```
 
 **Paso 3 - Emita SSL para Nginx**
@@ -134,7 +133,6 @@ IMPORTANT NOTES:
    Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
    Donating to EFF:                    https://eff.org/donate-le
 -------------------------------------------------------------------------
-
 ```
 
 **Paso 4 - Configurar SSL Auto Renew**
@@ -145,7 +143,7 @@ Al final, configure el siguiente JOB en su servidor crontab para renovar automá
 0 2 * * * sudo /usr/sbin/certbot-auto -q renew
 ```
 
--
+
 
 ### ¡Listo, ya tenemos nuestra instancia asociada a un Dominio Web y SSL funcionando!
 
