@@ -99,8 +99,8 @@ Antes de comenzar, asumiremos:
 Descargar el `certbot-auto` (cliente de Let´s Encrypt) y guardarlo en el directorio `/usr/sbin`
 
 ```
-$ sudo wget https://dl.eff.org/certbot-auto -O / usr / sbin / certbot-auto
-$ sudo chmod a + x / usr / sbin / certbot-auto
+$ sudo wget https://dl.eff.org/certbot-auto -O /usr/sbin/certbot-auto
+$ sudo chmod a+x /usr/sbin/certbot-auto
 ```
 
 **Paso 3 - Emita SSL para Nginx**
